@@ -5,7 +5,7 @@ import os
 
 if __name__ == '__main__':
     c = cdsapi.Client()  
-    variables = ['2m_temperature', 'mean_sea_level_pressure', 'top_net_thermal_radiation', 'total_column_water_vapour', 'total_precipitation']
+    variables = ['2m_temperature', 'top_net_thermal_radiation', 'total_column_water_vapour', 'total_precipitation']
     # build up a dictionary
     dic = {
         'product_type': 'reanalysis',
