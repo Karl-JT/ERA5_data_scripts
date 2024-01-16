@@ -11,9 +11,7 @@ if __name__ == '__main__':
 
     dic = {
         'product_type': 'reanalysis',
-        'variable': [
-            'u_component_of_wind' 
-            ],
+        'variable': '',
         'pressure_level': '500',
         'year': '',
         'month': [
@@ -55,12 +53,14 @@ if __name__ == '__main__':
         'format': 'netcdf',
     }
 
-    for y in range(1940, 2023):  
-        dic['year'] = str(y)
-        cur_path= os.getcwd() + '/'+ 'single_level_' + str(y) + '.nc'
-        if not os.path.exists(cur_path):
-            filename = 'single_level' + str(y) + '.nc'    # file name
-            c.retrieve("reanalysis-era5-single-levels", dic, filename)  # start downloading
-            print('starting downloading year' + str(y))
-        else:
-            print('already exist')
+    for var in variables:
+        for y in range(1940, 2023):  
+            dic['year'] = str(y)
+            dic['variable'] = var
+            cur_path= os.getcwd() + '/'+ var + str(y) + '.nc'
+            if not os.path.exists(cur_path):
+                filename = var + str(y) + '.nc'    # file name
+                c.retrieve("reanalysis-era5-single-levels", dic, filename)  # start downloading
+                print('starting downloading year' + str(y))
+            else:
+                print('already exist')
